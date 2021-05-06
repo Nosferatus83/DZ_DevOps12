@@ -1,0 +1,47 @@
+# Rep from https://github.com/shephertz/App42PaaS-Java-MySQL-Sample
+#http://35.246.159.127:8080/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: core
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: 12345
+    healthcheck:
+      test: mysql --user=$$MYSQL_USER --password=$$MYSQL_PASSWORD -e 'SHOW DATABASES;'
+      timeout: 5s
+      retries: 5
+    volumes:
+      - database-vol:/var/lib/mysql
+    networks:
+      - net-app
+
+
+  collector:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - application-vol:/home/pkhramchenkov/App42PaaS-Java-MySQL-Sample/target/
+      - properties-vol:/home/pkhramchenkov/App42PaaS-Java-MySQL-Sample/WebContent/
+
+  prod:
+    image: tomcat:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - application-vol:/usr/local/tomcat/webapps/
+      - properties-vol:/usr/local/tomcat/ROOT/
+    depends_on:
+      - db
+    networks:
+      - net-app
+
+volumes:
+  database-vol:
+  application-vol:
+  properties-vol:
+networks:
+  net-app:
