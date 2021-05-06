@@ -1,5 +1,5 @@
-# Rep from https://github.com/shephertz/App42PaaS-Java-MySQL-Sample
-#http://35.246.159.127:8088/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT
+# Rep from => https://github.com/shephertz/App42PaaS-Java-MySQL-Sample
+# Result => http://35.246.162.237:8088/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT
 version: '3'
 services:
   db:
@@ -9,15 +9,8 @@ services:
       MYSQL_DATABASE: core
       MYSQL_USER: appuser
       MYSQL_PASSWORD: 12345
-    healthcheck:
-      test: mysql --user=$$MYSQL_USER --password=$$MYSQL_PASSWORD -e 'SHOW DATABASES;'
-      timeout: 5s
-      retries: 5
-    volumes:
-      - database-vol:/var/lib/mysql
     networks:
       - net-app
-
 
   collector:
     build:
@@ -40,7 +33,6 @@ services:
       - net-app
 
 volumes:
-  database-vol:
   application-vol:
   properties-vol:
 networks:
