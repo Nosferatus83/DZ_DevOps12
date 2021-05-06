@@ -1,5 +1,5 @@
 # Rep from https://github.com/shephertz/App42PaaS-Java-MySQL-Sample
-#http://35.246.159.127:8080/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT
+#http://35.246.159.127:8088/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT
 version: '3'
 services:
   db:
@@ -30,7 +30,7 @@ services:
   prod:
     image: tomcat:8.5
     ports:
-      - "8080:8080"
+      - "8088:8080"
     volumes:
       - application-vol:/usr/local/tomcat/webapps/
       - properties-vol:/usr/local/tomcat/ROOT/
