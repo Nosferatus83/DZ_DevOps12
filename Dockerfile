@@ -5,9 +5,9 @@ RUN apt-get install default-jdk -y
 RUN apt-get install git -y
 RUN apt-get install maven -y
 
-WORKDIR /home/pkhramchenkov/
+WORKDIR /home/source/
 RUN git clone https://github.com/shephertz/App42PaaS-Java-MySQL-Sample.git
-WORKDIR /home/pkhramchenkov/App42PaaS-Java-MySQL-Sample/
+WORKDIR /home/source/App42PaaS-Java-MySQL-Sample/
 
 RUN echo "app42.paas.db.username = appuser" > WebContent/Config.properties
 RUN echo "app42.paas.db.port = 3306" >> WebContent/Config.properties

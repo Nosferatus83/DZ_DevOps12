@@ -24,8 +24,8 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - application-vol:/home/pkhramchenkov/App42PaaS-Java-MySQL-Sample/target/
-      - properties-vol:/home/pkhramchenkov/App42PaaS-Java-MySQL-Sample/WebContent/
+      - application-vol:/home/source/App42PaaS-Java-MySQL-Sample/target/
+      - properties-vol:/home/source/App42PaaS-Java-MySQL-Sample/WebContent/
 
   prod:
     image: tomcat:8.5
